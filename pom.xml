@@ -23,6 +23,74 @@
 
 	<profiles>
           <profile>
+      <id>spoon</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>fr.inria.gforge.spoon</groupId>
+            <artifactId>spoon-maven-plugin</artifactId>
+            <version>2.1</version>
+            <executions>
+              <execution>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>fr.inria.gforge.spoon</groupId>
+                <artifactId>spoon-core</artifactId>
+                <version>4.3.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>diversify-all</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>fr.inria.gforge.spoon</groupId>
+            <artifactId>spoon-maven-plugin</artifactId>
+            <version>2.1</version>
+            <executions>
+              <execution>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <processors>
+                <processor>fr.inria.diversify.FantomProcessor</processor>
+                <processor>fr.inria.diversify.InvertIfProcessor</processor>
+                <!--<processor>fr.inria.diversify.VariableDeclaration</processor>-->
+                <!--<processor>fr.inria.diversify.EncryptLiteralProcessor</processor>-->
+              </processors>
+              <compliance>8</compliance>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>fr.inria.diversify</groupId>
+                <artifactId>SpoonProcessors</artifactId>
+                <version>1.1-SNAPSHOT</version>
+              </dependency>
+              <dependency>
+                <groupId>fr.inria.gforge.spoon</groupId>
+                <artifactId>spoon-core</artifactId>
+                <version>4.3.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+          <profile>
             <id>JDK 8 Build</id>
             <activation>
               <jdk>[1.8,)</jdk>
